@@ -1,0 +1,19 @@
+# http://wiki.ros.org/costmap_2d
+
+local_costmap:
+    # Same as in the global costmap params
+    global_frame: /map
+    robot_base_frame: base_link
+    update_frequency: 5.0
+    static_map: true
+
+    # How often to publish the costmap visualization (sec)
+    publish_frequency: 2.0
+    
+    # If the costmap should always be centered on the robot footprint
+    rolling_window: true
+    
+    # Size (meters) and resolution (meter/cell) of the costmap
+    width: 6.0
+    height: 6.0
+    resolution: 0.05

@@ -1,0 +1,11 @@
+# http://wiki.ros.org/costmap_2d
+
+global_costmap:
+    global_frame: map
+    robot_base_frame: base_link
+
+    # How often to update the costmap (secs)
+    update_frequency: 5.0
+
+    # If using a static map from a map server
+    static_map: true

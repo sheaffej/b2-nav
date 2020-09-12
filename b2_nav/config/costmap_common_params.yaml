@@ -1,0 +1,34 @@
+# http://wiki.ros.org/costmap_2d
+
+# Max distance in meters of an object to consider as an object
+# Disregard obstacles beyond this range in meters
+obstacle_range: 2.5
+
+# Max distance in meters from the robot (front?) to look for free space
+# Disregard free space beyond this range in meters
+raytrace_range: 3.0
+
+# The polygon of the robot's footprint
+# geometry_msgs/Polygon: A specification of a polygon where the first and last points are 
+# assumed to be connected.
+footprint: [[0.105, 0.145], [-0.150, 0.145], [-0.105, -0.125], [0.105, -0.125]]
+
+# Or use a robot radius
+#robot_radius: ir_of_robot
+
+# Space in meters around obstacles to avoid
+inflation_radius: 0.55
+
+# List of sensors from which to get obstacle readings
+# observation_sources: laser_scan_sensor point_cloud_sensor
+observation_sources: laser_scan_sensor
+
+# Details about each obstacle sensor
+# The "frame_name" parameter should be set to the name of the coordinate frame of the sensor, 
+# the "data_type" parameter should be set to LaserScan or PointCloud depending on which message 
+# the topic uses, and the "topic_name" should be set to the name of the topic that the sensor 
+# publishes data on. The "marking" and "clearing" parameters determine whether the sensor will 
+# be used to add obstacle information to the costmap, clear obstacle information from the 
+# costmap, or do both.
+laser_scan_sensor: {sensor_frame: scanner_link, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
+# point_cloud_sensor: {sensor_frame: frame_name, data_type: PointCloud, topic: topic_name, marking: true, clearing: true}
