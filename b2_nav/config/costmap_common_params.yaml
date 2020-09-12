@@ -30,5 +30,5 @@ observation_sources: laser_scan_sensor
 # publishes data on. The "marking" and "clearing" parameters determine whether the sensor will 
 # be used to add obstacle information to the costmap, clear obstacle information from the 
 # costmap, or do both.
-laser_scan_sensor: {sensor_frame: scanner_link, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
+laser_scan_sensor: {sensor_frame: scanner_link, data_type: LaserScan, topic: scan, marking: true, clearing: true}
 # point_cloud_sensor: {sensor_frame: frame_name, data_type: PointCloud, topic: topic_name, marking: true, clearing: true}
