@@ -1,4 +1,4 @@
-# http://wiki.ros.org/base_local_planner
+# http://wiki.ros.org/base_local_planner#Parameters
 
 TrajectoryPlannerROS:
     # Velocity limits of the robot

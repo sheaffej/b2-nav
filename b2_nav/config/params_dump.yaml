@@ -1,0 +1,333 @@
+amcl: {
+  base_frame_id: base_link, 
+  beam_skip_distance: 0.5, 
+  beam_skip_threshold: 0.3,
+  do_beamskip: false, 
+  first_map_only: false, 
+  global_frame_id: map, 
+  gui_publish_rate: 10.0,
+  initial_cov_aa: 0.01450785710356438, 
+  initial_cov_xx: 0.026551626877659034, 
+  initial_cov_yy: 0.07085978983670321,
+  initial_pose_a: 2.928190762959909, 
+  initial_pose_x: 0.007991685418123479, 
+  initial_pose_y: 0.1581294160057975,
+  kld_err: 0.05, 
+  kld_z: 0.99, 
+  laser_lambda_short: 0.1, 
+  laser_likelihood_max_dist: 2.0,
+  laser_max_beams: 30, 
+  laser_max_range: -1.0, 
+  laser_min_range: -1.0, 
+  laser_model_type: likelihood_field,
+  laser_sigma_hit: 0.2, 
+  laser_z_hit: 0.5, 
+  laser_z_max: 0.05, 
+  laser_z_rand: 0.5, 
+  laser_z_short: 0.05,
+  max_particles: 5000, 
+  min_particles: 500, 
+  odom_alpha1: 0.2, 
+  odom_alpha2: 0.2, 
+  odom_alpha3: 0.8,
+  odom_alpha4: 0.2, 
+  odom_alpha5: 0.1, 
+  odom_frame_id: odom, 
+  odom_model_type: diff,
+  recovery_alpha_fast: 0.0, 
+  recovery_alpha_slow: 0.0, 
+  resample_interval: 1, 
+  restore_defaults: false,
+  save_pose_rate: 0.5, 
+  tf_broadcast: true, 
+  transform_tolerance: 0.1, 
+  update_min_a: 0.5,
+  update_min_d: 0.2, 
+  use_map_topic: false
+}
+joint_state_publisher: {
+  use_gui: false
+}
+move_base:
+  TrajectoryPlannerROS: {
+    acc_lim_theta: 3.2, 
+    acc_lim_x: 2.5, 
+    acc_lim_y: 2.5, 
+    angular_sim_granularity: 0.025,
+    dwa: false, 
+    escape_reset_dist: 0.1, 
+    escape_reset_theta: 1.57079632679, 
+    escape_vel: -0.1,
+    goal_distance_bias: 0.8, 
+    heading_lookahead: 0.325, 
+    heading_scoring: false, 
+    heading_scoring_timestep: 0.1,
+    holonomic_robot: false, 
+    max_vel_theta: 1.0, 
+    max_vel_x: 0.45, 
+    min_in_place_vel_theta: 0.4,
+    min_vel_theta: -1.0, 
+    min_vel_x: 0.1, 
+    occdist_scale: 0.01, 
+    oscillation_reset_dist: 0.05,
+    path_distance_bias: 0.6, 
+    restore_defaults: false, 
+    sim_granularity: 0.025, 
+    sim_time: 1.7,
+    simple_attractor: false, 
+    vtheta_samples: 20, 
+    vx_samples: 20, 
+    y_vels: '-0.3,-0.1,0.1,-0.3'
+  }
+  aggressive_reset: {
+    reset_distance: 1.84
+  }
+  base_global_planner: navfn/NavfnROS
+  base_local_planner: base_local_planner/TrajectoryPlannerROS
+  clearing_rotation_allowed: true
+  conservative_reset: {
+    reset_distance: 3.0
+  }
+  conservative_reset_dist: 3.0
+  controller_frequency: 20.0
+  controller_patience: 5.0
+  global_costmap:
+    footprint: '[[0.105,0.145],[-0.15,0.145],[-0.105,-0.125],[0.105,-0.125]]'
+    footprint_padding: 0.01
+    global_frame: map
+    height: 10
+    inflation_layer: {
+      cost_scaling_factor: 10.0, 
+      enabled: true, 
+      inflate_unknown: false,
+      inflation_radius: 0.55
+    }
+    inflation_radius: 0.55
+    laser_scan_sensor: {
+      clearing: true, 
+      data_type: LaserScan, 
+      marking: true, 
+      sensor_frame: scanner_link,
+      topic: scan
+    }
+    observation_sources: laser_scan_sensor
+    obstacle_layer:
+      combination_method: 1
+      enabled: true
+      footprint_clearing_enabled: true
+      laser_scan_sensor: {
+        clearing: true, 
+        data_type: LaserScan, 
+        marking: true, 
+        sensor_frame: scanner_link,
+        topic: /scan
+      }
+      max_obstacle_height: 2.0
+      observation_sources: laser_scan_sensor
+      obstacle_range: 2.5
+      raytrace_range: 3.0
+    obstacle_range: 2.5
+    origin_x: 0.0
+    origin_y: 0.0
+    plugins:
+    - {name: static_layer, type: 'costmap_2d::StaticLayer'}
+    - {name: obstacle_layer, type: 'costmap_2d::ObstacleLayer'}
+    - {name: inflation_layer, type: 'costmap_2d::InflationLayer'}
+    publish_frequency: 0.0
+    raytrace_range: 3.0
+    resolution: 0.05
+    robot_base_frame: base_link
+    robot_radius: 0.46
+    static_layer: {enabled: true}
+    static_map: true
+    transform_tolerance: 0.3
+    update_frequency: 5.0
+    width: 10
+  local_costmap:
+    footprint: '[[0.105,0.145],[-0.15,0.145],[-0.105,-0.125],[0.105,-0.125]]'
+    footprint_padding: 0.01
+    global_frame: map
+    height: 6
+    inflation_layer: {
+      cost_scaling_factor: 10.0, 
+      enabled: true, 
+      inflate_unknown: false,
+      inflation_radius: 0.55
+    }
+    inflation_radius: 0.55
+    laser_scan_sensor: {
+      clearing: true, 
+      data_type: LaserScan, 
+      marking: true, 
+      sensor_frame: scanner_link,
+      topic: scan
+    }
+    observation_sources: laser_scan_sensor
+    obstacle_layer:
+      combination_method: 1
+      enabled: true
+      footprint_clearing_enabled: true
+      laser_scan_sensor: {
+        clearing: true, 
+        data_type: LaserScan, 
+        marking: true, 
+        sensor_frame: scanner_link,
+        topic: /scan
+      }
+      max_obstacle_height: 2.0
+      observation_sources: laser_scan_sensor
+      obstacle_range: 2.5
+      raytrace_range: 3.0
+    obstacle_range: 2.5
+    origin_x: 0.0
+    origin_y: 0.0
+    plugins:
+    - {name: static_layer, type: 'costmap_2d::StaticLayer'}
+    - {name: obstacle_layer, type: 'costmap_2d::ObstacleLayer'}
+    - {name: inflation_layer, type: 'costmap_2d::InflationLayer'}
+    publish_frequency: 2.0
+    raytrace_range: 3.0
+    resolution: 0.05
+    robot_base_frame: base_link
+    robot_radius: 0.46
+    rolling_window: true
+    static_layer: {
+      enabled: true
+    }
+    static_map: true
+    transform_tolerance: 0.3
+    update_frequency: 5.0
+    width: 6
+  max_planning_retries: -1
+  oscillation_distance: 0.5
+  oscillation_timeout: 0.0
+  planner_frequency: 0.0
+  planner_patience: 5.0
+  recovery_behavior_enabled: true
+  restore_defaults: false
+  shutdown_costmaps: false
+robot_description: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<!-- ===================================================================================\
+  \ -->\n<!-- |    This document was autogenerated by xacro from /ros/src/b2_description/urdf/b2.urdf\
+  \ | -->\n<!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                \
+  \                 | -->\n<!-- ===================================================================================\
+  \ -->\n<robot name=\"B2\">\n  <joint name=\"camera_link_joint\" type=\"fixed\">\n\
+  \    <origin rpy=\"0.0 0.0 0.0\" xyz=\"0.143 0.0 0.185\"/>\n    <parent link=\"\
+  base_link\"/>\n    <child link=\"camera_link\"/>\n  </joint>\n  <joint name=\"imu_link_join\"\
+  \ type=\"fixed\">\n    <origin rpy=\"0.0 0.0 0.0\" xyz=\"0.080 -0.035 0.133\"/>\n\
+  \    <parent link=\"base_link\"/>\n    <child link=\"imu_link\"/>\n  </joint>\n\
+  \  <joint name=\"scanner_link_join\" type=\"fixed\">\n    <origin rpy=\"0.0 0.0\
+  \ 3.14159\" xyz=\"0.080 0 0.228\"/>\n    <parent link=\"base_link\"/>\n    <child\
+  \ link=\"scanner_link\"/>\n  </joint>\n  <link name=\"base_link\">\n    <visual\
+  \ name=\"frame_box\">\n      <!-- Top of frame is 120mm from origin -->\n      <geometry>\n\
+  \        <box size=\"0.250 0.200 0.075\"/>\n      </geometry>\n      <origin xyz=\"\
+  0.0 0.0 0.0825\"/>\n      <material name=\"White\"/>\n    </visual>\n    <visual\
+  \ name=\"nuc\">\n      <!-- Top of NUC is 156mm from origin -->\n      <geometry>\n\
+  \        <!-- NUC8i5BEK: 4.60\" x 4.40\" x 1.41\" (117 mm x 112 mm x 36 mm) -->\n\
+  \        <box size=\"0.117 0.112 0.036\"/>\n      </geometry>\n      <origin xyz=\"\
+  -0.0335 0.0 0.138\"/>\n      <material name=\"White\"/>\n    </visual>\n    <visual\
+  \ name=\"raspberry_pi4\">\n      <geometry>\n        <box size=\"0.070 0.094 0.030\"\
+  />\n      </geometry>\n      <origin xyz=\"0.077 0.017 0.135\"/>\n      <material\
+  \ name=\"White\"/>\n    </visual>\n    <visual name=\"prototype_board\">\n     \
+  \ <!-- Top of prototype board is 166 from origin -->\n      <geometry>\n       \
+  \ <box size=\"0.035 0.045 0.010\"/>\n      </geometry>\n      <origin xyz=\"0.077\
+  \ -0.052 0.125\"/>\n      <material name=\"White\"/>\n    </visual>\n    <visual\
+  \ name=\"front_left_wheel\">\n      <geometry>\n        <cylinder length=\"0.025\"\
+  \ radius=\"0.0325\"/>\n      </geometry>\n      <origin rpy=\"1.570 0.0 0.0\" xyz=\"\
+  0.095 0.0875 0.0325\"/>\n      <material name=\"Black\"/>\n    </visual>\n    <visual\
+  \ name=\"front_right_wheel\">\n      <geometry>\n        <cylinder length=\"0.025\"\
+  \ radius=\"0.0325\"/>\n      </geometry>\n      <origin rpy=\"1.570 0.0 0.0\" xyz=\"\
+  0.095 -0.0875 0.0325\"/>\n      <material name=\"Black\"/>\n    </visual>\n    <visual\
+  \ name=\"rear_left_wheel\">\n      <geometry>\n        <cylinder length=\"0.025\"\
+  \ radius=\"0.0325\"/>\n      </geometry>\n      <origin rpy=\"1.570 0.0 0.0\" xyz=\"\
+  -0.095 0.0875 0.0325\"/>\n      <material name=\"Black\"/>\n    </visual>\n    <visual\
+  \ name=\"rear_right_wheel\">\n      <geometry>\n        <cylinder length=\"0.025\"\
+  \ radius=\"0.0325\"/>\n      </geometry>\n      <origin rpy=\"1.570 0.0 0.0\" xyz=\"\
+  -0.095 -0.0875 0.0325\"/>\n      <material name=\"Black\"/>\n    </visual>\n  </link>\n\
+  \  <link name=\"camera_link\">\n    <visual>\n      <geometry>\n        <box size=\"\
+  0.025 0.085 0.025\"/>\n      </geometry>\n      <material name=\"Sky Blue\"/>\n\
+  \    </visual>\n  </link>\n  <link name=\"imu_link\">\n    <visual>\n      <geometry>\n\
+  \        <box size=\"0.02032 0.0127 0.003\"/>\n      </geometry>\n      <material\
+  \ name=\"PCB Green\"/>\n    </visual>\n  </link>\n  <link name=\"scanner_link\"\
+  >\n    <visual>\n      <geometry>\n        <!--\n                    Rotating cylinder\
+  \ is 24mm tall\n                    Receive sensor is 16.5mm above bottom surface\n\
+  \                    So the visual should be dropped by the difference\n       \
+  \                 y = (24/2) - 16.5 = -4.5mm\n                -->\n        <cylinder\
+  \ length=\"0.024\" radius=\"0.035\"/>\n      </geometry>\n      <origin xyz=\"0\
+  \ 0 -0.0045\"/>\n      <material name=\"Black\"/>\n    </visual>\n    <visual>\n\
+  \      <geometry>\n        <box size=\"0.100 0.070 0.033\"/>\n      </geometry>\n\
+  \      <origin xyz=\"0.015 0.0 -0.033\"/>\n      <material name=\"Black\"/>\n  \
+  \  </visual>\n  </link>\n  <material name=\"Black\">\n    <color rgba=\"0.0 0.0\
+  \ 0.0 1.0\"/>\n  </material>\n  <material name=\"Sky Blue\">\n    <color rgba=\"\
+  0.125 0.525 0.90 1.0\"/>\n  </material>\n  <material name=\"White\">\n    <color\
+  \ rgba=\"1.0 1.0 1.0 1.0\"/>\n  </material>\n  <material name=\"PCB Green\">\n \
+  \   <color rgba=\"0.0 0.468 0.0 1.0\"/>\n  </material>\n  <material name=\"Gray\"\
+  >\n    <color rgba=\"0.5 0.5 0.5 1.0\"/>\n  </material>\n</robot>\n\n"
+rosdistro: 'melodic'
+roslaunch:
+  uris: {host_docker_server__38611: 'http://docker-server:38611/', host_ros_dev__33139: 'http://ros-dev:33139/',
+    host_ros_dev__33351: 'http://ros-dev:33351/', host_ros_dev__34821: 'http://ros-dev:34821/',
+    host_ros_dev__36929: 'http://ros-dev:36929/', host_ros_dev__37131: 'http://ros-dev:37131/',
+    host_ros_dev__37771: 'http://ros-dev:37771/', host_ros_dev__38017: 'http://ros-dev:38017/',
+    host_ros_dev__39131: 'http://ros-dev:39131/', host_ros_dev__40035: 'http://ros-dev:40035/',
+    host_ros_dev__40251: 'http://ros-dev:40251/', host_ros_dev__42275: 'http://ros-dev:42275/',
+    host_ros_dev__42717: 'http://ros-dev:42717/', host_ros_dev__43191: 'http://ros-dev:43191/',
+    host_ros_dev__43819: 'http://ros-dev:43819/', host_ros_dev__44771: 'http://ros-dev:44771/',
+    host_ros_dev__45411: 'http://ros-dev:45411/', host_ros_dev__45957: 'http://ros-dev:45957/',
+    host_ros_dev__46013: 'http://ros-dev:46013/', host_ros_dev__46233: 'http://ros-dev:46233/'}
+rosversion: '1.14.6'
+run_id: d895cc58-f481-11ea-87e6-98ded002c2dd
+slam_toolbox: {
+  angle_variance_penalty: 1.0, 
+  base_frame: base_link, 
+  ceres_dogleg_type: TRADITIONAL_DOGLEG,
+  ceres_linear_solver: SPARSE_NORMAL_CHOLESKY, 
+  ceres_loss_function: None, 
+  ceres_preconditioner: SCHUR_JACOBI,
+  ceres_trust_strategy: LEVENBERG_MARQUARDT, 
+  coarse_angle_resolution: 0.0349, 
+  coarse_search_angle_offset: 0.349,
+  correlation_search_space_dimension: 0.5, 
+  correlation_search_space_resolution: 0.01,
+  correlation_search_space_smear_deviation: 0.1, 
+  debug_logging: true, 
+  distance_variance_penalty: 0.5,
+  do_loop_closing: true, 
+  enable_interactive_mode: false, 
+  fine_search_angle_offset: 0.00349,
+  interactive_mode: false, 
+  link_match_minimum_response_fine: 0.1, 
+  link_scan_maximum_distance: 1.5,
+  loop_match_maximum_variance_coarse: 3.0, 
+  loop_match_minimum_chain_size: 10, 
+  loop_match_minimum_response_coarse: 0.35,
+  loop_match_minimum_response_fine: 0.45, 
+  loop_search_maximum_distance: 3.0, 
+  loop_search_space_dimension: 8.0,
+  loop_search_space_resolution: 0.05, 
+  loop_search_space_smear_deviation: 0.03, 
+  map_frame: map,
+  map_update_interval: 5.0, 
+  max_laser_range: 10.0, 
+  minimum_angle_penalty: 0.9, 
+  minimum_distance_penalty: 0.5,
+  minimum_time_interval: 0.5, 
+  minimum_travel_distance: 0.1, 
+  minimum_travel_heading: 0.5,
+  mode: mapping, 
+  odom_frame: odom, 
+  paused_new_measurements: false, 
+  paused_processing: false,
+  resolution: 0.05, 
+  scan_buffer_maximum_scan_distance: 10, 
+  scan_buffer_size: 10, 
+  scan_topic: /scan,
+  solver_plugin: 'solver_plugins::CeresSolver', 
+  stack_size_to_use: 40000000, 
+  tf_buffer_duration: 30.0,
+  throttle_scans: 1, 
+  transform_publish_period: 0.02, 
+  transform_timeout: 0.2, 
+  use_response_expansion: true,
+  use_scan_barycenter: true, 
+  use_scan_matching: true}
+use_sim_time: true

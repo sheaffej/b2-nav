@@ -11,13 +11,13 @@ raytrace_range: 3.0
 # The polygon of the robot's footprint
 # geometry_msgs/Polygon: A specification of a polygon where the first and last points are 
 # assumed to be connected.
-footprint: [[0.105, 0.145], [-0.150, 0.145], [-0.105, -0.125], [0.105, -0.125]]
+footprint: [[0.105, 0.145], [-0.105, 0.145], [-0.105, -0.125], [0.105, -0.125]]
 
 # Or use a robot radius
 #robot_radius: ir_of_robot
 
 # Space in meters around obstacles to avoid
-inflation_radius: 0.55
+inflation_radius: 0.200
 
 # List of sensors from which to get obstacle readings
 # observation_sources: laser_scan_sensor point_cloud_sensor
