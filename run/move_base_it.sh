@@ -16,4 +16,4 @@ docker run -it --rm \
 -e ROS_MASTER_URI \
 --mount type=bind,source=$PROJECT_DIR/b2_nav,target=/ros/src/b2_nav \
 --mount type=bind,source=${DOWNLOADS_DIR},target=/root/Downloads \
-$IMAGE /bin/bash
+$IMAGE roslaunch b2_nav move_base_only.launch

@@ -1,16 +1,20 @@
 <launch>
 
-    <arg name="map_file" default="$(find b2_slam_toolbox)/map/b2-downstairs3.yaml"/>
+    <arg name="map_file" default="$(find b2_slam_toolbox)/map/b2-downstairs4.yaml"/>
 
     <!-- Run the map server --> 
     <node name="map_server" pkg="map_server" type="map_server"
-        args="$(arg map_file)" required="true"/>
+          args="$(arg map_file)" required="true"/>
+
 
     <!--- Run AMCL --> 
-    <include file="$(find amcl)/examples/amcl_diff.launch" />
+    <node name="amcl" pkg="amcl" type="amcl" output="screen">
+        <rosparam file="$(find b2_nav)/config/amcl_params.yaml" command="load"/>     
+    </node>
 
-    <node pkg="move_base" type="move_base" respawn="false" name="move_base"
-        output="screen" required="true">
+
+    <node name="move_base" pkg="move_base" type="move_base"
+          respawn="false" output="screen" required="true">
         <rosparam file="$(find b2_nav)/config/costmap_common_params.yaml"     command="load" ns="global_costmap" /> 
         <rosparam file="$(find b2_nav)/config/costmap_common_params.yaml"     command="load" ns="local_costmap" />
         <rosparam file="$(find b2_nav)/config/local_costmap_params.yaml"      command="load" />
