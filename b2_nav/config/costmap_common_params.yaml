@@ -11,7 +11,7 @@ raytrace_range: 3.0
 # The polygon of the robot's footprint
 # geometry_msgs/Polygon: A specification of a polygon where the first and last points are 
 # assumed to be connected.
-footprint: [[0.105, 0.145], [-0.105, 0.145], [-0.105, -0.125], [0.105, -0.125]]
+footprint: [[0.145, 0.105], [-0.125, 0.105], [-0.125, -0.105], [0.145, -0.105]]
 
 # Or use a robot radius
 #robot_radius: ir_of_robot
