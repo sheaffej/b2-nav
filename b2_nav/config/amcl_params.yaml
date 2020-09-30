@@ -1,5 +1,6 @@
 base_frame_id: base_link
-first_map_only: false
+use_map_topic: false    # default: false
+first_map_only: false   # default: false
 global_frame_id: map
 gui_publish_rate: 10.0
 
@@ -41,16 +42,16 @@ odom_model_type: diff-corrected   # default: diff
 odom_frame_id: odom
 
 # Expected noise in odom's rotation estimate from the rotational component of the robot's motion
-odom_alpha1: 0.1    # texas willow: 0.04
+odom_alpha1: 0.04    # texas willow: 0.04 (best: 0.2)
 
 # Expected noise in odom's rotation estimate from translational component of the robot's motion
-odom_alpha2: 0.06    # texas willow: 0.6
+odom_alpha2: 0.06    # texas willow: 0.6 (best: 0.06)
 
 # Expected noise in odom's translation estimate from the translational component of the robot's motion
-odom_alpha3: 0.10    # texas willow: 0.3
+odom_alpha3: 0.10    # texas willow: 0.3 (best: 0.10)
 
 # Expected noise in odom's translation estimate from the rotational component of the robot's motion
-odom_alpha4: 0.005    # texax willow: 0.04
+odom_alpha4: 0.005    # texax willow: 0.04 (best 0.005)
 
 # Translation-related noise parameter (only used if model is "omni").
 # odom_alpha5: 0.1    # <--- default: 0.1
@@ -58,15 +59,14 @@ odom_alpha4: 0.005    # texax willow: 0.04
 
 # receive_map_topic: true    # <--- only in Jackal example
 recovery_alpha_fast: 0.1     # <--- default: 0.0
-recovery_alpha_slow: 0.0
+recovery_alpha_slow: 0.1
 resample_interval: 1
 transform_tolerance: 5.0
 
 # Rotational movement required before performing a filter update.
-update_min_a: deg(15)    # <--- default: 0.52 (pi/6)
+update_min_a: deg(5)    # <--- default: 0.52 (pi/6)
 
 # Translational movement required before performing a filter update
-update_min_d: 0.1      # <--- default: 0.2
+update_min_d: 0.05      # <--- default: 0.2
 
 
-use_map_topic: true
