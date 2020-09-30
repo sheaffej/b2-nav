@@ -14,7 +14,7 @@ kld_z: 0.99
 laser_lambda_short: 0.1
 laser_likelihood_max_dist: 2.0
 
-laser_max_beams: 720    # <--- default: 30 | Jackal: 720 | RPLIDAR A1: 360
+laser_max_beams: 360    # <--- default: 30 | Jackal: 720 | RPLIDAR A1: 360
 
 
 # laser_max_range: 30.0    # <--- default: -1.0
@@ -31,28 +31,31 @@ max_particles: 2000    # <---  default: 5000 | Jackal: 2000
 
 min_particles: 500
 
+# =========================
+# Odometry Model Parameters
+# =========================
+# https://answers.ros.org/question/227811/tuning-amcls-diff-corrected-and-omni-corrected-odom-models/
+# https://github.com/ros-planning/navigation/blob/jade-devel/amcl/test/texas_willow_hallway_loop_corrected.xml
+
+odom_model_type: diff-corrected   # default: diff
+odom_frame_id: odom
 
 # Expected noise in odom's rotation estimate from the rotational component of the robot's motion
-odom_alpha1: 5.0    # <--- default: 0.2
+odom_alpha1: 0.1    # texas willow: 0.04
 
 # Expected noise in odom's rotation estimate from translational component of the robot's motion
-odom_alpha2: 1.0    # <--- default: 0.2
-
-
+odom_alpha2: 0.06    # texas willow: 0.6
 
 # Expected noise in odom's translation estimate from the translational component of the robot's motion
-odom_alpha3: 0.4    # <--- default: 0.2 | Jakal: 0.8
+odom_alpha3: 0.10    # texas willow: 0.3
 
 # Expected noise in odom's translation estimate from the rotational component of the robot's motion
-odom_alpha4: 0.2    # <--- default: 0.2
-
+odom_alpha4: 0.005    # texax willow: 0.04
 
 # Translation-related noise parameter (only used if model is "omni").
 # odom_alpha5: 0.1    # <--- default: 0.1
 
 
-odom_frame_id: odom
-odom_model_type: diff
 # receive_map_topic: true    # <--- only in Jackal example
 recovery_alpha_fast: 0.1     # <--- default: 0.0
 recovery_alpha_slow: 0.0
