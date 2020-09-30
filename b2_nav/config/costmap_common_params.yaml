@@ -17,7 +17,7 @@ footprint: [[0.145, 0.105], [-0.125, 0.105], [-0.125, -0.105], [0.145, -0.105]]
 #robot_radius: ir_of_robot
 
 # Space in meters around obstacles to avoid
-inflation_radius: 0.200
+inflation_radius: 0.05
 
 # List of sensors from which to get obstacle readings
 # observation_sources: laser_scan_sensor point_cloud_sensor
