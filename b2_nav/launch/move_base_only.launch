@@ -1,25 +1,12 @@
 <launch>
 
-    <!-- <arg name="map_file" default="$(find b2_slam_toolbox)/map/b2-downstairs4.yaml"/> -->
-
-    <!-- Run the map server --> 
-    <!-- <node name="map_server" pkg="map_server" type="map_server"
-          args="$(arg map_file)" required="true"/> -->
-
-
-    <!--- Run AMCL --> 
-    <!-- <node name="amcl" pkg="amcl" type="amcl" output="screen">
-        <rosparam file="$(find b2_nav)/config/amcl_params.yaml" command="load"/>     
-    </node> -->
-
-
     <node name="move_base" pkg="move_base" type="move_base"
           respawn="false" output="screen" required="true">
-        <rosparam file="$(find b2_nav)/config/costmap_common_params.yaml"     command="load" ns="global_costmap" /> 
-        <rosparam file="$(find b2_nav)/config/costmap_common_params.yaml"     command="load" ns="local_costmap" />
-        <rosparam file="$(find b2_nav)/config/local_costmap_params.yaml"      command="load" />
-        <rosparam file="$(find b2_nav)/config/global_costmap_params.yaml"     command="load" /> 
-        <rosparam file="$(find b2_nav)/config/move_base_params.yaml" command="load" />
+        <rosparam file="$(find b2_nav)/config/move_base/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+        <rosparam file="$(find b2_nav)/config/move_base/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find b2_nav)/config/move_base/local_costmap_params.yaml"  command="load" />
+        <rosparam file="$(find b2_nav)/config/move_base/global_costmap_params.yaml" command="load" /> 
+        <rosparam file="$(find b2_nav)/config/move_base/move_base_params.yaml"      command="load" />
     </node>
 
 </launch> 

@@ -9,7 +9,8 @@
 
     <!--- Run AMCL --> 
     <node name="amcl" pkg="amcl" type="amcl" output="screen">
-        <rosparam file="$(find b2_nav)/config/amcl/amcl_params.yaml" command="load"/>     
+        <rosparam file="$(find b2_nav)/config/amcl/amcl_params.yaml" command="load"/>   
+        <remap from="odom" to="base_node/odom"/>  
     </node>
 
 </launch> 

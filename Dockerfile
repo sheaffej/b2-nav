@@ -4,20 +4,12 @@ WORKDIR /root
 SHELL [ "bash", "-c"]
 ENV ROS_WS /ros
 
-# RUN LINE BELOW TO REMOVE debconf ERRORS (MUST RUN BEFORE ANY apt-get CALLS)
-RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
-
-RUN apt-get update \
-&& apt-get install -y --no-install-recommends \
-    apt-utils \
-&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-
 # Install additional ROS packages
 RUN apt-get update \
 && apt-get install -y --no-install-recommends \
     ros-melodic-move-base \
     ros-melodic-amcl \
+    ros-melodic-robot-localization \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Create ROS workspace
@@ -36,6 +28,7 @@ RUN cd ${ROS_WS}/src \
 && rosdep update \
 && rosdep install -y -r --from-paths src --ignore-src --rosdistro=${ROS_DISTRO} -y
 
+# Build slam_toolbox and create a cached Docker layer since this code does not change
 RUN source /opt/ros/${ROS_DISTRO}/setup.bash \
 && cd ${ROS_WS}/src \
 && cd ${ROS_WS} \
@@ -43,7 +36,7 @@ RUN source /opt/ros/${ROS_DISTRO}/setup.bash \
 
 
 # Intstall B2 packages
-COPY b2_slam_toolbox ${ROS_WS}/src/b2_slam_toolbox
+# COPY b2_slam_toolbox ${ROS_WS}/src/b2_slam_toolbox
 COPY b2_nav ${ROS_WS}/src/b2_nav
 
 RUN source /opt/ros/${ROS_DISTRO}/setup.bash \
